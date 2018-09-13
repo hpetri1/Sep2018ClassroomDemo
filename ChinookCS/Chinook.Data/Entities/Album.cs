@@ -29,5 +29,10 @@ namespace Chinook.Data.Entities
 
         [StringLength(50, ErrorMessage = "Release Label is limited to 50 characters")]
         public string ReleaseLabel { get; set; }
+
+        //navigational properties
+        public virtual Artist Artist { get; set; } // class, classname POINTING TO A PARENT
+
+        //public virtual ICollection<Track> Tracks { get; set; } POINTING TO A CHILD (this table does not exist in our DB)
     }
 }
