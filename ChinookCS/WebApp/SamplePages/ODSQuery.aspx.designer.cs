@@ -7,36 +7,45 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApp {
+namespace WebApp.SamplePages {
     
     
-    public partial class SiteMaster {
+    public partial class ODSQuery {
         
         /// <summary>
-        /// navMenu control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Menu navMenu;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// SiteMapNav control.
+        /// ArtistList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapDataSource SiteMapNav;
+        protected global::System.Web.UI.WebControls.DropDownList ArtistList;
         
         /// <summary>
-        /// MainContent control.
+        /// FetchArtist control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.LinkButton FetchArtist;
+        
+        /// <summary>
+        /// ArtistListODS control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ArtistListODS;
     }
 }
