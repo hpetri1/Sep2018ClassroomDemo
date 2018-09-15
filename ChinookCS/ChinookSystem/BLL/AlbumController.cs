@@ -32,5 +32,18 @@ namespace ChinookSystem.BLL
                 return context.Albums.Find(albumid);
             }
         }
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<Album> Album_GetByArtistId(int artistid)
+        {
+            using (var context = new ChinookContext())
+            {
+                // using Linq here instead of the SQL statement
+                var results = from aRowOn in context.Albums  /* to use the DbSet albums*/
+                              where aRowOn.ArtistId.Equals(artistid) // In SQL this means: Select albumid, title, artistid, releaseYear, releaseLabel from Albums Where ArtistId = @artistid
+                              select aRowOn;
+                return results.ToList();
+            }
+        }
     }
 }
