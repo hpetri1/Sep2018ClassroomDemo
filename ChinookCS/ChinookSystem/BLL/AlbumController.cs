@@ -45,5 +45,51 @@ namespace ChinookSystem.BLL
                 return results.ToList();
             }
         }
+
+        //Sep 17, 2018
+        //added this methods for the ODSCRUD.aspx Page
+        [DataObjectMethod(DataObjectMethodType.Insert, false)]
+        public int Album_Add(Album item)
+        {
+            using (var context = new ChinookContext())
+            {
+                item = context.Albums.Add(item); //staged it, is not in the DB yet
+                context.SaveChanges(); // is in the DB now
+                return item.AlbumId; //if I don't want to send anything back I use void instead of public
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Update, false)]
+        public int Album_Update(Album item)
+        {
+            using (var context = new ChinookContext())
+            {
+                item.ReleaseLabel = string.IsNullOrEmpty(item.ReleaseLabel) ? null :
+                    item.ReleaseLabel; //if it contains an empry string then I set it to null else I set it the value inside the field
+                context.Entry(item).State = System.Data.Entity.EntityState.Modified; //stages the update
+                return context.SaveChanges(); //sends the number of rows that were affected
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Delete, false)]
+        public int Album_Delete(Album item)
+        {
+            return Album_Delete(item.AlbumId);
+        }
+
+        public int Album_Delete(int albumid)
+        {
+            using (var context = new ChinookContext())
+            {
+                var existing = context.Albums.Find(albumid);
+                if (existing == null)
+                {
+                    throw new Exception("Album does not exist on file.");
+                }
+
+                context.Albums.Remove(existing);
+                return context.SaveChanges();
+            }
+        }
     }
 }
