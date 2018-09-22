@@ -42,5 +42,29 @@ namespace WebApp.SamplePages
             TracksTime.Text = time.ToString();
             TracksSize.Text = size.ToString();
         }
+
+        protected void TracksOfAlbums_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridViewRow agvrow = TracksOfAlbums.Rows[TracksOfAlbums.SelectedIndex];
+            GridViewIndex.Text = TracksOfAlbums.SelectedIndex.ToString();
+            SumTrackId.Text = (agvrow.FindControl("TrackIdLabel") as Label).Text;
+        }
+
+        protected void Sum_Click(object sender, EventArgs e)
+        {
+            double time = 0;
+            double size = 0;
+
+            //use foreach to cycle through the listview //but only for what you see at the screen, it doen't do it for the whole dataset
+            foreach (GridViewRow item in this.TracksOfAlbums.Rows)
+            {
+                time += double.Parse((item.FindControl("MillisecondsLabel") as Label).Text);
+                size += double.Parse((item.FindControl("BytesLabel") as Label).Text);
+            }
+
+            SumTime.Text = time.ToString();
+            SumSize.Text = size.ToString();
+
+        }
     }
 }
