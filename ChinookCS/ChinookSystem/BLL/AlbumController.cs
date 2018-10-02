@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 using Chinook.Data.Entities;
 using ChinookSystem.DAL;
 using System.ComponentModel; //ODS
-
+using Chinook.Data.DTOs;
+using Chinook.Data.POCOs;
 #endregion
 
 namespace ChinookSystem.BLL
@@ -90,6 +91,35 @@ namespace ChinookSystem.BLL
 
                 context.Albums.Remove(existing);
                 return context.SaveChanges();
+            }
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select, false)]
+        public List<AnAlbum> Album_GetAlbumAndSongs()
+        {
+            using (var context = new ChinookContext())
+            {
+               
+                //Create a list of albums showing its title and artist.
+                //Show albums with 15 or more tracks only.
+                //For each album show the songs on the album and their length.
+
+                var results = from x in context.Albums
+                                where x.Tracks.Count() > 24
+                                select new AnAlbum
+                                {
+                                    artist = x.Artist.Name,
+                                    title = x.Title,
+                                    songs = (from y in x.Tracks
+                                            select new Song
+                                            {
+                                                songname = y.Name,
+                                                length = y.Milliseconds / 60000 + ":" + (y.Milliseconds % 60000) / 1000
+                                            }).ToList()
+
+                                };
+
+                return results.ToList();               
             }
         }
     }
