@@ -54,3 +54,26 @@ select new
 			genre = gTemp.Key.Name,
 			numberof = gTemp.Count()
 		}
+		
+// OCT 10, 2018
+//create a list of employees showing the customers
+//that each employee supports
+//1. What is the datapile to group? => Customers
+//2. What is teh grouping attribute criteria? => By Employee
+from x in Customers
+group x by x.SupportRepIdEmployee into gEmployeeCustomerList
+select new
+		{
+			FirstName = gEmployeeCustomerList.Key.FirstName,
+			LastName = gEmployeeCustomerList.Key.LastName,
+			Phone = gEmployeeCustomerList.Key.Phone,
+			Email = gEmployeeCustomerList.Key.Email,
+			NumberOfCustomers = gEmployeeCustomerList.Count(),
+			CustomerList = from y in gEmployeeCustomerList
+							select new
+							{
+								Name = y.LastName + ", " + y.FirstName,
+								Phone = y.Phone,
+								Email = y.Email
+							}
+		}
