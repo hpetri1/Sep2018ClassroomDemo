@@ -52,11 +52,26 @@ namespace ChinookSystem.BLL
         {
             using (var context = new ChinookContext())
             {
-                List<TrackList> results = null;
 
-                //code to go here
-
-                return results;
+                var results = from x in context.Tracks
+                              where (tracksby.Equals("Artist") && x.Album.ArtistId.Equals(argid))
+                              || (tracksby.Equals("Gentre") && x.GenreId.Equals(argid))
+                              || (tracksby.Equals("MediaType") && x.MediaTypeId.Equals(argid))
+                              || (tracksby.Equals("Album") && x.AlbumId.Equals(argid))
+                              orderby x.Name
+                              select new TrackList
+                              {
+                                  TrackID = x.TrackId,
+                                  Name = x.Name,
+                                  Title = x.Album.Title,
+                                  MediaName = x.MediaType.Name,
+                                  GenreName = x.Genre.Name,
+                                  Composer = x.Composer,
+                                  Milliseconds = x.Milliseconds,
+                                  Bytes = x.Bytes,
+                                  UnitPrice = x.UnitPrice,
+                              };
+                return results.ToList();
             }
         }//eom
     }
