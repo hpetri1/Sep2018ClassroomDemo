@@ -81,3 +81,5 @@ namespace ChinookSystem.BLL
     }
 }
 
+
+//((x.OrderList.select(y=>y.OrderID)>Distinct().Count()
