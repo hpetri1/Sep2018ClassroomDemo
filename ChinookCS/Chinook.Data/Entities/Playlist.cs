@@ -11,7 +11,7 @@ namespace Chinook.Data.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Playlist()
         {
-            PlaylistTracks = new HashSet<PlaylistTrack>();
+            PlaylistTracks = new HashSet<PlaylistTrack>(); //This is for Transaction Process!!!!
         }
 
         public int PlaylistId { get; set; }
