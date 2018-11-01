@@ -1,0 +1,20 @@
+Purchasing:
+- 2 states (whentrying to get an order together, and when actually order it)
+- active oreder? send? => becomes placed order
+- How to know what to order? Computer will suggest what to order. Reorder level. Only if you have an active order.
+- In Current Purchase Order: make sure Quantity On Order(QOO) is also accounted for when creating an order, ROL(reorder-level) - (QOH + QOO) = Qty to order
+- Subsystem will only make a suggestion, but the employee will finally make a decision, and remove an item from the suggested list
+
+Receiving:
+- What has been ordered? Backorder? Send back items. Broken something? Return. False order, didn't order.
+- Vendor goes out of business? How to get the order from the books. Force an order to be removed from the books.
+- Unordered Vendor Parts (ListView)
+
+Shopping:
+
+Jobing:
+- customer brings their bike for service, the clerk will create a job (work-request) e.g. tire rotation, oilchange, etc.
+- In Current Job Service Details: Start: send request to update the service record, Done => update status, Remove => only if the service hasn't started, in BLL
+
+
+Create separate Controllers for each Subsystem (Suggestion)
