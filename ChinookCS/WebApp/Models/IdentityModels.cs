@@ -8,11 +8,23 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WebApp.Models;
 
+#region Additional Namespaces
+using WebApp.Security;
+using System.Data.Entity;
+#endregion
+
 namespace WebApp.Models
 {
     // You can add User data for the user by adding more properties to your User class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        #region Custom Properties
+        // these properties will become attributes on the AspNetUsers SQL table
+        //once a numeric datatype is made nullable, the default for that data is NULL
+        public int? EmployeeId { get; set; } //there is NO direct link between the Employee Table and these property
+        public int? CustomerId { get; set; }
+        #endregion
+
         public ClaimsIdentity GenerateUserIdentity(ApplicationUserManager manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -32,6 +44,9 @@ namespace WebApp.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            //this method will be used to load the SQL database with a default webmaster
+            //and default customer IF the security tables DO NOT exist in your database.
+            Database.SetInitializer<ApplicationDbContext>(new SecurityDbContextInitializer());
         }
 
         public static ApplicationDbContext Create()
