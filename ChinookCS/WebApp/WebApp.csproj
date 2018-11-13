@@ -223,6 +223,7 @@
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="SamplePages\ManagePlaylist.aspx" />
+    <Content Include="SamplePages\MockupScreen.aspx" />
     <Content Include="SamplePages\NestedRepeater.aspx" />
     <Content Include="SamplePages\ODSCRUD.aspx" />
     <Content Include="SamplePages\ODSQuery.aspx" />
@@ -414,6 +415,12 @@
     </Compile>
     <Compile Include="SamplePages\ManagePlaylist.aspx.designer.cs">
       <DependentUpon>ManagePlaylist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SamplePages\MockupScreen.aspx.cs">
+      <DependentUpon>MockupScreen.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SamplePages\MockupScreen.aspx.designer.cs">
+      <DependentUpon>MockupScreen.aspx</DependentUpon>
     </Compile>
     <Compile Include="SamplePages\NestedRepeater.aspx.cs">
       <DependentUpon>NestedRepeater.aspx</DependentUpon>
